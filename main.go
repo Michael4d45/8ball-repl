@@ -45,8 +45,9 @@ func main() {
 		fmt.Print("-> ")
 		text, _ := reader.ReadString('\n')
 		text = strings.Replace(text, "\n", "", -1)
+		text = strings.Replace(text, "\r", "", -1) // for windows
 
-		matched, _ := regexp.MatchString("[A-Z].*\\?$", text)
+		matched, _ := regexp.MatchString(`.*\?$`, text)
 		if matched {
 			fmt.Println(getAnswer(text))
 		}
